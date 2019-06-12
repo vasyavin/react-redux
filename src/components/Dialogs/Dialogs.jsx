@@ -11,9 +11,9 @@ import {addSendMassegeCreator, UpdeteNewMassegeBodyCreator} from "../../redux/di
 
 
 const Dialogs = (props) => {
-    debugger
 
-    let state = props.store.getState().DialogsPage;
+
+    let state = props.DialogsPage;
 
     let DialogsElements = state.dialogs
         .map( d => <DialogsItem name={d.name} id={d.id} /> );
@@ -26,14 +26,14 @@ const Dialogs = (props) => {
     let newDialogElement = React.createRef();
 
     let addDialog = () => {
-        props.store.dispatch(addSendMassegeCreator());
+        props.addSendMassege();
     }
-//localhost lesson 43
     let newMassageBody = state.newMassageBody;
 
     let onNewMessageChange = (e) => {
         let body = e.target.value;
-        props.store.dispatch(UpdeteNewMassegeBodyCreator(body));
+        props.UpdeteNewMassegeBody(body);
+
     }
 
     return (
