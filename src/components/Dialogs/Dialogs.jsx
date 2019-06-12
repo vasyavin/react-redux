@@ -28,7 +28,7 @@ const Dialogs = (props) => {
     let addDialog = () => {
         props.store.dispatch(addSendMassegeCreator());
     }
-
+//localhost lesson 43
     let newMassageBody = state.newMassageBody;
 
     let onNewMessageChange = (e) => {
