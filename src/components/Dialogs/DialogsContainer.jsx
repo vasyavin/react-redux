@@ -6,25 +6,31 @@ import Message from "./Message/Message";
 import Logo from "./Logo/Logo"
 import {addSendMassegeCreator, UpdeteNewMassegeBodyCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
+import StoreContext from "../../StoreContext";
 
-const DialogsContainer = (props) => {
+const DialogsContainer = () => {
 
-    let state = props.store.getState().DialogsPage;;
+    return <StoreContext.Consumer>
 
-    let newDialogElement = React.createRef();
+        { store => {
+            let state = store.getState().DialogsPage;;
 
-    let addDialog = () => {
-        props.store.dispatch(addSendMassegeCreator());
-    }
-    let newMassageBody = state.newMassageBody;
+            let newDialogElement = React.createRef();
 
-    let onNewMessageChange = (body) => {
-        props.store.dispatch(UpdeteNewMassegeBodyCreator(body));
-    }
+            let addDialog = () => {
+                store.dispatch(addSendMassegeCreator());
+            }
+            let newMassageBody = state.newMassageBody;
 
-    return ( <Dialogs UpdeteNewMassegeBody={onNewMessageChange}
+            let onNewMessageChange = (body) => {
+                store.dispatch(UpdeteNewMassegeBodyCreator(body));
+            }
+        return ( <Dialogs UpdeteNewMassegeBody={onNewMessageChange}
                       addSendMassege={addDialog}
                       DialogsPage={state}/>  )
+        }
+    }
+    </StoreContext.Consumer>
 }
 
 export default DialogsContainer;
