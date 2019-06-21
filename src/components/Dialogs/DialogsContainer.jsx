@@ -1,36 +1,27 @@
 import React from 'react';
-import s from './Dialogs.module.css';
-import {NavLink} from "react-router-dom";
-import DialogsItem from "./DialogsItem/DialogsItem";
-import Message from "./Message/Message";
-import Logo from "./Logo/Logo"
 import {addSendMassegeCreator, UpdeteNewMassegeBodyCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
-import StoreContext from "../../StoreContext";
+import {connect} from "react-redux";
 
-const DialogsContainer = () => {
 
-    return <StoreContext.Consumer>
 
-        { store => {
-            let state = store.getState().DialogsPage;;
+let mapStateToProps = (state) => {
+    return {
+        DialogsPage: state.DialogsPage
+    }
+}
 
-            let newDialogElement = React.createRef();
-
-            let addDialog = () => {
-                store.dispatch(addSendMassegeCreator());
-            }
-            let newMassageBody = state.newMassageBody;
-
-            let onNewMessageChange = (body) => {
-                store.dispatch(UpdeteNewMassegeBodyCreator(body));
-            }
-        return ( <Dialogs UpdeteNewMassegeBody={onNewMessageChange}
-                      addSendMassege={addDialog}
-                      DialogsPage={state}/>  )
+let mapDispatchTooProps = (dispatch) => {
+    return {
+        UpdeteNewMassegeBody: (body) => {
+            dispatch(UpdeteNewMassegeBodyCreator(body));
+        },
+        addSendMassege: () => {
+            dispatch(addSendMassegeCreator());
         }
     }
-    </StoreContext.Consumer>
 }
+
+const DialogsContainer = connect (mapStateToProps, mapDispatchTooProps)(Dialogs);
 
 export default DialogsContainer;
