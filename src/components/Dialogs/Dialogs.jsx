@@ -16,10 +16,10 @@ const Dialogs = (props) => {
     let state = props.DialogsPage;
 
     let DialogsElements = state.dialogs
-        .map( d => <DialogsItem name={d.name} id={d.id} /> );
+        .map( d => <DialogsItem name={d.name} key={d.id} id={d.id} /> );
 
     let massagesElements = state.Massages
-        .map( m => <Message massage={m.massage} id={m.id}/>)
+        .map( m => <Message massage={m.massage} key={m.id} id={m.id}/>)
     let LogoDialogs = state.imageProfile
         .map( n => <Logo img={n.img}/>)
 

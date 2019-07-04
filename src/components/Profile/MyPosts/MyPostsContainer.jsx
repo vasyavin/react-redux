@@ -12,8 +12,10 @@ let mapStateToProps = (state) => {
 }
 
 let mapDispatchTooProps = (dispatch) => {
+    debugger;
     return {
         updateNewPostText: (text) => {
+            debugger;
             let action = onPostChangeActionCreator(text);
             dispatch(action);
         },
@@ -23,6 +25,6 @@ let mapDispatchTooProps = (dispatch) => {
     }
 }
 
-const MyPostsContainer = connect (mapStateToProps, mapDispatchTooProps)(MyPosts);
+const MyPostsContainer = connect(mapStateToProps, mapDispatchTooProps)(MyPosts);
 
 export default MyPostsContainer;

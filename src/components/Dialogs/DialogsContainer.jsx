@@ -4,7 +4,6 @@ import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 
 
-
 let mapStateToProps = (state) => {
     return {
         DialogsPage: state.DialogsPage
@@ -13,15 +12,15 @@ let mapStateToProps = (state) => {
 
 let mapDispatchTooProps = (dispatch) => {
     return {
-        UpdeteNewMassegeBody: (body) => {
-            dispatch(UpdeteNewMassegeBodyCreator(body));
-        },
         addSendMassege: () => {
             dispatch(addSendMassegeCreator());
+        },
+        UpdeteNewMassegeBody: (body) => {
+            dispatch(UpdeteNewMassegeBodyCreator(body));
         }
     }
 }
 
-const DialogsContainer = connect (mapStateToProps, mapDispatchTooProps)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, mapDispatchTooProps)(Dialogs);
 
 export default DialogsContainer;
